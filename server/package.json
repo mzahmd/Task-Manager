@@ -1,19 +1,21 @@
 {
-  "dependencies": {
-    "express": "^4.19.2"
-  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "keywords": [],
+  "type": "module",
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {
-    "nodemon": "^3.1.1"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.1"
+  }
 }

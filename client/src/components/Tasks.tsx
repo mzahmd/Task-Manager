@@ -1,18 +1,32 @@
 import { useState } from "react";
-import { tasks } from "../db/tasks"
+import { useQuery } from "urql";
 import TaskCard from "./TaskCard"
+import { graphql } from "gql.tada"
 
 interface Task {
   id: string
   name: string
 }
 
+interface FetchResponse {
+  tasks: Array<Task>
+}
+
+const TaskQuery = graphql(`
+  query Tasks {
+    tasks {
+      id
+      name
+    } 
+  }
+`)
+
 export default function Tasks() {
   const [newTask, setNewTask] = useState({} as Task)
+  const [result] = useQuery<FetchResponse>({ query: TaskQuery })
 
   function handleClick(e: React.FormEvent) {
     e.preventDefault();
-    tasks.push(newTask)
   }
 
   return (
@@ -22,7 +36,7 @@ export default function Tasks() {
         <button className="font-bold bg-emerald-500 hover:bg-emerald-700 rounded text-slate-200 shadow ms-2 py-1 px-2" type="button" onClick={handleClick}>ADD</button>
       </div>
 
-      {tasks.map(task =>
+      {result.data?.tasks?.map(task =>
         <TaskCard task={task} key={task.id} />
       )}
     </>

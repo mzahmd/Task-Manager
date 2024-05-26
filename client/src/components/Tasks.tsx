@@ -22,7 +22,7 @@ const TaskQuery = graphql(`
 `)
 
 export default function Tasks() {
-  const [newTask, setNewTask] = useState({} as Task)
+  const [newTask, setNewTask] = useState<Task>({} as Task)
   const [result] = useQuery<FetchResponse>({ query: TaskQuery })
 
   function handleClick(e: React.FormEvent) {

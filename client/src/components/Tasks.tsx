@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { tasks } from "../db/tasks"
-import Task from "./Task"
+import TaskCard from "./TaskCard"
 
 interface Task {
   id: string
@@ -23,7 +23,7 @@ export default function Tasks() {
       </div>
 
       {tasks.map(task =>
-        <Task task={task} key={task.id} />
+        <TaskCard task={task} key={task.id} />
       )}
     </>
   )

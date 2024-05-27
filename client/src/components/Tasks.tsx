@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "urql";
+import { useMutation, useQuery } from "urql";
 import TaskCard from "./TaskCard"
 import { graphql } from "gql.tada"
 
@@ -21,12 +21,22 @@ const TaskQuery = graphql(`
   }
 `)
 
+const CreateTaskMutation = graphql(`
+  mutation CreateTask($task: ITask) {
+    createTask(task: $task) {
+      name
+    }
+  }
+`)
+
 export default function Tasks() {
   const [newTask, setNewTask] = useState<Task>({} as Task)
   const [result] = useQuery<FetchResponse>({ query: TaskQuery })
+  const [_, createTask] = useMutation(CreateTaskMutation)
 
-  function handleClick(e: React.FormEvent) {
-    e.preventDefault();
+  function handleClick() {
+    console.log(newTask)
+    createTask({task: newTask})
   }
 
   return (

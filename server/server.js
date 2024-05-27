@@ -11,8 +11,13 @@ const typeDefs = `#graphql
     tasks: [Task]!
   }
   type Mutation {
-    updateTask(id: ID): [Task]!
+    createTask(task: ITask): [Task]!
+    updateTask(id: ID): [Task!]!
     deleteTask(id: ID): [Task]!
+  }
+
+  input ITask {
+    name: String!
   }
 `;
 
@@ -21,9 +26,14 @@ const resolvers = {
     tasks: () => tasks,
   },
   Mutation: {
+    createTask: (_, args) => {
+      console.log(args.task);
+      tasks.push({...args.task, id: tasks.length+1+"", name: args.task.name});
+      return tasks;
+    },
     updateTask: (id) => tasks,
-    deleteTask: (id) => tasks
-  }
+    deleteTask: (id) => tasks,
+  },
 };
 
 const server = new ApolloServer({

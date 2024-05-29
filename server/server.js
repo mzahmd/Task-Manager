@@ -24,8 +24,7 @@ const resolvers = {
   },
   Mutation: {
     createTask: (_, args) => {
-      console.log(args);
-      tasks.push({...args.task, id: tasks.length+1+"", name: args.task.name});
+      tasks.push({...args.task, id: tasks.length+1+"", name: args.name});
       return tasks;
     },
     updateTask: (id) => tasks,

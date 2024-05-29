@@ -11,14 +11,11 @@ const typeDefs = `#graphql
     tasks: [Task]!
   }
   type Mutation {
-    createTask(task: ITask): [Task]!
+    createTask(name: String): [Task]!
     updateTask(id: ID): [Task!]!
     deleteTask(id: ID): [Task]!
   }
 
-  input ITask {
-    name: String!
-  }
 `;
 
 const resolvers = {
@@ -27,7 +24,7 @@ const resolvers = {
   },
   Mutation: {
     createTask: (_, args) => {
-      console.log(args.task);
+      console.log(args);
       tasks.push({...args.task, id: tasks.length+1+"", name: args.task.name});
       return tasks;
     },

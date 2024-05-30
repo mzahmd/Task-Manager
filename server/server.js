@@ -15,7 +15,6 @@ const typeDefs = `#graphql
     updateTask(id: ID): [Task!]!
     deleteTask(id: ID): [Task]!
   }
-
 `;
 
 const resolvers = {

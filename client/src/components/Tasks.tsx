@@ -14,7 +14,7 @@ interface FetchResponse {
 
 export default function Tasks() {
   const [newTask, setNewTask] = useState<Task>({} as Task)
-  const [{ data, error }] = useQuery<FetchResponse>({ query: TaskQuery })
+  const [{ data, error, fetching }] = useQuery<FetchResponse>({ query: TaskQuery })
   const [_, createTask] = useMutation(CreateTaskMutation)
 
   function handleClick() {
@@ -24,6 +24,12 @@ export default function Tasks() {
   if (error) {
     return <p>Error...</p>
   }
+
+  if(fetching) {
+    return <p>Loading...</p>
+  }
+
+  console.log(data)
 
   return (
     <>

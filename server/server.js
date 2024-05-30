@@ -12,8 +12,8 @@ const typeDefs = `#graphql
   }
   type Mutation {
     createTask(name: String): [Task]!
-    updateTask(id: ID): [Task!]!
-    deleteTask(id: ID): [Task]!
+    updateTask(id: ID!): [Task!]!
+    deleteTask(id: ID!): [Task]!
   }
 `;
 
@@ -22,12 +22,22 @@ const resolvers = {
     tasks: () => tasks,
   },
   Mutation: {
-    createTask: (_, args) => {
-      tasks.push({...args.task, id: tasks.length+1+"", name: args.name});
+    createTask: (_, { name }) => {
+      tasks.push({ id: tasks.length + "", name });
       return tasks;
     },
-    updateTask: (id) => tasks,
-    deleteTask: (id) => tasks,
+    updateTask: (_, { id }) => {
+      return tasks.map((task) => {
+        if (task.id === id) {
+          return task;
+        }
+        return task;
+      });
+    },
+    deleteTask: (_, { id }) => {
+      console.log(id);
+      return tasks.filter((task) => task.id !== id);
+    },
   },
 };
 

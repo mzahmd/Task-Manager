@@ -16,3 +16,11 @@ export const CreateTaskMutation = graphql(`
     }
   }
 `)
+
+export const DeleteTaskMutation = graphql(`
+  mutation DeleteTask($id: ID) {
+    deleteTask(id: $id) {
+      name
+    }
+  }
+`)

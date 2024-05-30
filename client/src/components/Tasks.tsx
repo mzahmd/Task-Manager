@@ -20,7 +20,6 @@ export default function Tasks() {
   if (fetching) {
     return <p>Loading...</p>
   }
-  
 
   return (
     <>

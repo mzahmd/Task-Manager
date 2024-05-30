@@ -10,15 +10,23 @@ export const TaskQuery = graphql(`
 `)
 
 export const CreateTaskMutation = graphql(`
-  mutation CreateTask($name: String) {
+  mutation CreateTask($name: String!) {
     createTask(name: $name) {
       name
     }
   }
 `)
 
+export const UpdateTaskMutation = graphql(`
+  mutation UpdateTask($id: ID!) {
+    updateTask(id: $id) {
+      name
+    }
+  }
+`)
+
 export const DeleteTaskMutation = graphql(`
-  mutation DeleteTask($id: ID) {
+  mutation DeleteTask($id: ID!) {
     deleteTask(id: $id) {
       name
     }

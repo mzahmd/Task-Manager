@@ -11,7 +11,7 @@ const typeDefs = `#graphql
     tasks: [Task]!
   }
   type Mutation {
-    createTask(name: String): [Task]!
+    createTask(name: String!): [Task]!
     updateTask(id: ID!): [Task!]!
     deleteTask(id: ID!): [Task]!
   }
@@ -35,7 +35,7 @@ const resolvers = {
       });
     },
     deleteTask: (_, { id }) => {
-      console.log(id);
+      // console.log(id);
       return tasks.filter((task) => task.id !== id);
     },
   },

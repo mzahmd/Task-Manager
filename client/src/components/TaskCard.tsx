@@ -8,15 +8,14 @@ interface Props {
 
 export default function TaskCard({ task }: Props) {
   const [_, deleteTask] = useMutation(DeleteTaskMutation)
-  console.log(task);
 
 
   function handleEdit() {
 
   }
 
-  function handleDelete(id: string) {
-    deleteTask({ id })
+  async function handleDelete(id: string) {
+    await deleteTask({ id })
   }
 
   return (

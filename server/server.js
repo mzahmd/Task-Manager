@@ -23,7 +23,7 @@ const resolvers = {
   },
   Mutation: {
     createTask: (_, { name }) => {
-      tasks.push({ id: tasks.length + "", name });
+      tasks.push({ id: String(tasks.length), name });
       return tasks;
     },
     updateTask: (_, { id }) => {
@@ -35,8 +35,8 @@ const resolvers = {
       });
     },
     deleteTask: (_, { id }) => {
-      // console.log(id);
-      return tasks.filter((task) => task.id !== id);
+      const taskIndex = tasks.findIndex(task => task.id === id);
+      return tasks.splice(taskIndex, 1);
     },
   },
 };

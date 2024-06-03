@@ -9,7 +9,6 @@ interface Props {
 export default function TaskCard({ task }: Props) {
   const [_, deleteTask] = useMutation(DeleteTaskMutation)
 
-
   function handleEdit() {
 
   }

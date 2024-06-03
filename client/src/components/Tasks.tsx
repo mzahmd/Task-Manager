@@ -8,9 +8,11 @@ export default function Tasks() {
   const [{ data, error, fetching }] = useQuery({ query: TaskQuery })
   const [_, createTask] = useMutation(CreateTaskMutation)
 
-  function handleAddClick() {
-    name && createTask({ name })
-    setName("")
+  async function handleAddClick() {
+    if (name) {
+      await createTask({ name })
+      setName("")
+    }
   }
 
   if (error) {
@@ -29,7 +31,7 @@ export default function Tasks() {
       </div>
 
       {data.tasks.map((task: { id: string; name: string; }) =>
-        <TaskCard task={task} key={task.id}/>
+        <TaskCard task={task} key={task.id} />
       )}
     </>
   )

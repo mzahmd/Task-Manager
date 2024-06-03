@@ -18,8 +18,9 @@ export const CreateTaskMutation = graphql(`
 `)
 
 export const UpdateTaskMutation = graphql(`
-  mutation UpdateTask($id: ID!) {
-    updateTask(id: $id) {
+  mutation UpdateTask($id: ID!, $name: String!) {
+    updateTask(id: $id, name: $name) {
+      id
       name
     }
   }

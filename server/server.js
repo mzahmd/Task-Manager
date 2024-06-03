@@ -12,7 +12,7 @@ const typeDefs = `#graphql
   }
   type Mutation {
     createTask(name: String!): [Task]!
-    updateTask(id: ID!): [Task!]!
+    updateTask(id: ID!, name: String!): [Task!]!
     deleteTask(id: ID!): [Task]!
   }
 `;
@@ -26,16 +26,11 @@ const resolvers = {
       tasks.push({ id: String(tasks.length), name });
       return tasks;
     },
-    updateTask: (_, { id }) => {
-      return tasks.map((task) => {
-        if (task.id === id) {
-          return task;
-        }
-        return task;
-      });
+    updateTask: (_, { id, name }) => {
+      return tasks.splice(id, 1, { id, name });
     },
     deleteTask: (_, { id }) => {
-      const taskIndex = tasks.findIndex(task => task.id === id);
+      const taskIndex = tasks.findIndex((task) => task.id === id);
       return tasks.splice(taskIndex, 1);
     },
   },

@@ -15,12 +15,12 @@ export default function Tasks() {
     }
   }
 
-  if (error) {
-    return <p>Error...</p>
-  }
-
   if (fetching) {
     return <p>Loading...</p>
+  }
+  
+  if (error) {
+    return <p>Error...</p>
   }
 
   return (

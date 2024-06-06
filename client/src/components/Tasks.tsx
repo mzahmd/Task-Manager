@@ -18,7 +18,7 @@ export default function Tasks() {
   if (fetching) {
     return <p>Loading...</p>
   }
-  
+
   if (error) {
     return <p>Error...</p>
   }
@@ -30,8 +30,8 @@ export default function Tasks() {
         <button className="font-bold bg-emerald-500 hover:bg-emerald-700 rounded text-slate-200 shadow ms-2 py-1 px-2" type="button" onClick={handleAddClick}>ADD</button>
       </div>
 
-      {data.tasks.map((task: { id: string; name: string; }) =>
-        <TaskCard task={task} key={task.id} />
+      {data?.tasks.map((task) =>
+        <TaskCard task={task!} key={task!.id} />
       )}
     </>
   )

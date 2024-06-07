@@ -8,12 +8,12 @@ const typeDefs = `#graphql
     name: String!
   }
   type Query {
-    tasks: [Task]!
+    tasks: [Task!]!
   }
   type Mutation {
     createTask(name: String!): [Task]!
     updateTask(id: ID!, name: String!): [Task!]!
-    deleteTask(id: ID!): [Task]!
+    deleteTask(id: ID!): [Task!]!
   }
 `;
 

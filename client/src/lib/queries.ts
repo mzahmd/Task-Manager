@@ -33,3 +33,10 @@ export const DeleteTaskMutation = graphql(`
     }
   }
 `)
+
+export const TaskFragments = graphql(`
+  fragment Task on Task {
+    id
+    name  
+  }
+`)

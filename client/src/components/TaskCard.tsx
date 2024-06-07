@@ -7,6 +7,7 @@ interface Task {
   name: string
   id: string
 }
+
 interface Props {
   task: {
     name: string
@@ -14,12 +15,12 @@ interface Props {
   }
 }
 
-
 export default function TaskCard({ task }: Props) {
-  const [_, deleteTask] = useMutation(DeleteTaskMutation);
-  const [__, updateTask] = useMutation(UpdateTaskMutation);
   const [isEditing, setIsEditing] = useState(false);
   const [newTaskName, setTaskName] = useState(task.name);
+
+  const [_, deleteTask] = useMutation(DeleteTaskMutation);
+  const [__, updateTask] = useMutation(UpdateTaskMutation);
 
   async function handleEdit(isEdit: boolean, task = {} as Task) {
     setIsEditing(isEdit);

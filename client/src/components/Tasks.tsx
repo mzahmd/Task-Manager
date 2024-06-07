@@ -5,6 +5,7 @@ import TaskCard from "./TaskCard";
 
 export default function Tasks() {
   const [name, setName] = useState("")
+
   const [{ data, error, fetching }] = useQuery({ query: TaskQuery })
   const [_, createTask] = useMutation(CreateTaskMutation)
 

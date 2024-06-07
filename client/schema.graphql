@@ -10,5 +10,5 @@ type Query {
 type Mutation {
   createTask(name: String!): [Task]!
   updateTask(id: ID!, name: String!): [Task!]!
-  deleteTask(id: ID!): [Task]!
+  deleteTask(id: ID!): [Task!]!
 }

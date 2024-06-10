@@ -22,7 +22,7 @@ export default function TaskCard({ task }: Props) {
   const [_, deleteTask] = useMutation(DeleteTaskMutation);
   const [__, updateTask] = useMutation(UpdateTaskMutation);
 
-  async function handleEdit(isEdit: boolean, task = {} as Task) {
+  async function handleEdit(isEdit: boolean, task?: Task) {
     setIsEditing(isEdit);
     if (task) {
       await updateTask({ ...task, name: newTaskName })

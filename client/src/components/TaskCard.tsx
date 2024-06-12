@@ -1,31 +1,32 @@
 import { useState } from "react";
 import { FaPencilAlt, FaRegSave, FaTrash } from "react-icons/fa";
 import { useMutation } from "urql";
-import { DeleteTaskMutation, UpdateTaskMutation } from "../lib/queries";
+import { DeleteTaskMutation, TaskFragment, UpdateTaskMutation } from "../lib/queries";
+import { FragmentOf, readFragment } from "gql.tada";
 
-interface Task {
-  name: string
-  id: string
-}
+// TODO: check Fragments how to use it 
+// TODO: use Eslint for clean code
+
 
 interface Props {
-  task: {
-    name: string
-    id: string
-  }
+  task: FragmentOf<typeof TaskFragment>
 }
 
 export default function TaskCard({ task }: Props) {
+  const data = readFragment(TaskFragment, task)
+
   const [isEditing, setIsEditing] = useState(false);
-  const [newTaskName, setTaskName] = useState(task.name);
+  const [newTaskName, setTaskName] = useState(data.name);
+
 
   const [_, deleteTask] = useMutation(DeleteTaskMutation);
   const [__, updateTask] = useMutation(UpdateTaskMutation);
 
-  async function handleEdit(isEdit: boolean, task?: Task) {
+  async function handleEdit(isEdit: boolean, task?: FragmentOf<typeof TaskFragment>) {
     setIsEditing(isEdit);
     if (task) {
-      await updateTask({ ...task, name: newTaskName })
+      // TODO: remove id
+      await updateTask({id: "",  ...task, name: newTaskName })
     }
   }
 

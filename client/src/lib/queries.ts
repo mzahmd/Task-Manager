@@ -1,13 +1,22 @@
-import { graphql } from "gql.tada"
+import { graphql } from "gql.tada";
 
-export const TaskQuery = graphql(`
-  query Tasks {
-    tasks {
-      id
-      name
-    } 
+export const TaskFragment = graphql(`
+  fragment Task on Task {
+    id
+    name
   }
-`)
+`);
+
+export const TaskQuery = graphql(
+  `
+    query Tasks {
+      tasks {
+        ...Task
+      }
+    }
+  `,
+  [TaskFragment]
+);
 
 export const CreateTaskMutation = graphql(`
   mutation CreateTask($name: String!) {
@@ -15,7 +24,7 @@ export const CreateTaskMutation = graphql(`
       name
     }
   }
-`)
+`);
 
 export const UpdateTaskMutation = graphql(`
   mutation UpdateTask($id: ID!, $name: String!) {
@@ -24,7 +33,7 @@ export const UpdateTaskMutation = graphql(`
       name
     }
   }
-`)
+`);
 
 export const DeleteTaskMutation = graphql(`
   mutation DeleteTask($id: ID!) {
@@ -32,11 +41,4 @@ export const DeleteTaskMutation = graphql(`
       name
     }
   }
-`)
-
-export const TaskFragments = graphql(`
-  fragment Task on Task {
-    id
-    name  
-  }
-`)
+`);

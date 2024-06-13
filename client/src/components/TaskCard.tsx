@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaPencilAlt, FaRegSave, FaTrash } from "react-icons/fa";
 import { useMutation } from "urql";
 import { DeleteTaskMutation, TaskFragment, UpdateTaskMutation } from "../lib/queries";
-import { FragmentOf, readFragment } from "gql.tada";
+import { readFragment, type FragmentOf } from "gql.tada";
 
 interface TaskCardProps {
   data: FragmentOf<typeof TaskFragment>

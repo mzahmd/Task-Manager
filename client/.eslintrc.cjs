@@ -26,5 +26,8 @@ module.exports = {
         "ignoreRestSiblings": true
       }
     ],
+
+    // Import rules
+    "@typescript-eslint/consistent-type-imports": "error"
   },
 }

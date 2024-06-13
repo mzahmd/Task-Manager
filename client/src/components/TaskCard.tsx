@@ -7,26 +7,24 @@ import { FragmentOf, readFragment } from "gql.tada";
 // TODO: check Fragments how to use it 
 // TODO: use Eslint for clean code
 
-
 interface Props {
-  task: FragmentOf<typeof TaskFragment>
+  data: FragmentOf<typeof TaskFragment>
 }
 
-export default function TaskCard({ task }: Props) {
-  const data = readFragment(TaskFragment, task)
+export default function TaskCard({ data }: Props) {
+  const task = readFragment(TaskFragment, data);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [newTaskName, setTaskName] = useState(data.name);
+  const [newTaskName, setTaskName] = useState(task.name);
 
 
   const [_, deleteTask] = useMutation(DeleteTaskMutation);
   const [__, updateTask] = useMutation(UpdateTaskMutation);
 
-  async function handleEdit(isEdit: boolean, task?: FragmentOf<typeof TaskFragment>) {
+  async function handleEdit(isEdit: boolean, updatedTask?: typeof task) {
     setIsEditing(isEdit);
-    if (task) {
-      // TODO: remove id
-      await updateTask({id: "",  ...task, name: newTaskName })
+    if (updatedTask) {
+      await updateTask({ ...updatedTask, name: newTaskName })
     }
   }
 

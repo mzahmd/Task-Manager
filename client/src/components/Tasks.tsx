@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "urql";
-import { CreateTaskMutation, TaskQuery } from "../lib/queries";
+import { CreateTaskMutation, TaskFragment, TaskQuery } from "../lib/queries";
 import TaskCard from "./TaskCard";
+import { readFragment } from "gql.tada";
 
 export default function Tasks() {
   const [name, setName] = useState("")
@@ -31,8 +32,10 @@ export default function Tasks() {
         <button className="font-bold bg-emerald-500 hover:bg-emerald-700 rounded text-slate-200 shadow ms-2 py-1 px-2" type="button" onClick={handleAddClick}>ADD</button>
       </div>
 
-      {data?.tasks.map((task) =>
-        <TaskCard task={task!} key={task!.id} />
+      {data?.tasks.map((item) => {
+        const { id } = readFragment(TaskFragment, item);
+        return <TaskCard data={item} key={id} />
+      }
       )}
     </>
   )

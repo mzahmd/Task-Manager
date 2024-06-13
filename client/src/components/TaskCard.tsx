@@ -4,11 +4,11 @@ import { useMutation } from "urql";
 import { DeleteTaskMutation, TaskFragment, UpdateTaskMutation } from "../lib/queries";
 import { FragmentOf, readFragment } from "gql.tada";
 
-interface Props {
+interface TaskCardProps {
   data: FragmentOf<typeof TaskFragment>
 }
 
-export default function TaskCard({ data }: Props) {
+export default function TaskCard({ data }: TaskCardProps) {
   const task = readFragment(TaskFragment, data);
 
   const [isEditing, setIsEditing] = useState(false);

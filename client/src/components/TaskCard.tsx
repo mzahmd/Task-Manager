@@ -4,7 +4,6 @@ import { useMutation } from "urql";
 import { DeleteTaskMutation, TaskFragment, UpdateTaskMutation } from "../lib/queries";
 import { FragmentOf, readFragment } from "gql.tada";
 
-// TODO: check Fragments how to use it 
 // TODO: use Eslint for clean code
 
 interface Props {

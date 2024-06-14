@@ -14,7 +14,6 @@ export default function TaskCard({ data }: TaskCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTaskName, setTaskName] = useState(task.name);
 
-
   const [_, deleteTask] = useMutation(DeleteTaskMutation);
   const [__, updateTask] = useMutation(UpdateTaskMutation);
 

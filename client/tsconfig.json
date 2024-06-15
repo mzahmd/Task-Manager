@@ -26,7 +26,10 @@
         "schema": "./schema.graphql", 
         "tadaOutputLocation": "./src/graphql-env.d.ts"
       } 
-    ] 
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

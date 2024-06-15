@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "urql";
-import { CreateTaskMutation, TaskQuery } from "../lib/queries";
-import TaskCard from "./TaskCard";
+import { CreateTaskMutation, TaskQuery } from "@/lib/queries";
+import TaskCard from "@/components/TaskCard";
 
 export default function Tasks() {
   const [taskName, setTaskName] = useState("")

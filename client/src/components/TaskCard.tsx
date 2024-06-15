@@ -1,8 +1,9 @@
+import { DeleteTaskMutation, UpdateTaskMutation } from "@/lib/queries";
+import type { FragmentOf } from "gql.tada";
+import { graphql } from "gql.tada";
 import { useState } from "react";
 import { FaPencilAlt, FaRegSave, FaTrash } from "react-icons/fa";
 import { useMutation } from "urql";
-import { DeleteTaskMutation, UpdateTaskMutation } from "../lib/queries";
-import { graphql, type FragmentOf } from "gql.tada";
 
 export const TaskFragment = graphql(`
   fragment Task on Task @_unmask {
@@ -13,6 +14,7 @@ export const TaskFragment = graphql(`
 
 interface TaskCardProps extends FragmentOf<typeof TaskFragment> { }
 
+export type A = string
 
 export default function TaskCard({ name, id }: TaskCardProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +25,7 @@ export default function TaskCard({ name, id }: TaskCardProps) {
 
   async function handleEditTask(isEdit: boolean) {
     setIsEditing(isEdit);
-    if(!isEdit) {
+    if (!isEdit) {
       await updateTask({ id, name: newTaskName })
     }
   }

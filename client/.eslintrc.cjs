@@ -27,7 +27,6 @@ module.exports = {
       }
     ],
 
-    // Import rules
     "@typescript-eslint/consistent-type-imports": "error"
   },
 }

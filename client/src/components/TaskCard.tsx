@@ -2,8 +2,7 @@ import { useState } from "react";
 import { FaPencilAlt, FaRegSave, FaTrash } from "react-icons/fa";
 import { useMutation } from "urql";
 import { DeleteTaskMutation, UpdateTaskMutation } from "../lib/queries";
-import { type FragmentOf } from "gql.tada";
-import { graphql } from "gql.tada";
+import { graphql, type FragmentOf } from "gql.tada";
 
 export const TaskFragment = graphql(`
   fragment Task on Task @_unmask {

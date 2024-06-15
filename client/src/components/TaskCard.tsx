@@ -12,21 +12,20 @@ export const TaskFragment = graphql(`
   }
 `);
 
-interface TaskCardProps {
-  data: FragmentOf<typeof TaskFragment>
-}
+interface TaskCardProps extends FragmentOf<typeof TaskFragment> { }
 
-export default function TaskCard({ data: task }: TaskCardProps) {
+
+export default function TaskCard({ name, id }: TaskCardProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [newTaskName, setTaskName] = useState(task.name);
+  const [newTaskName, setTaskName] = useState(name);
 
   const [_, deleteTask] = useMutation(DeleteTaskMutation);
   const [__, updateTask] = useMutation(UpdateTaskMutation);
 
-  async function handleEdit(isEdit: boolean, updatedTask?: typeof task) {
+  async function handleEdit(isEdit: boolean, oldTask?: TaskCardProps) {
     setIsEditing(isEdit);
-    if (updatedTask) {
-      await updateTask({ ...updatedTask, name: newTaskName })
+    if (oldTask) {
+      await updateTask({ ...oldTask, name: newTaskName })
     }
   }
 
@@ -38,11 +37,11 @@ export default function TaskCard({ data: task }: TaskCardProps) {
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 mx-auto my-2">
       <input type="text" className="p-1" onChange={(e) => setTaskName(e.target.value)} value={newTaskName} readOnly={!isEditing} />
       {isEditing ?
-        <button className="font-bold bg-gray-500 hover:bg-gray-700 rounded text-slate-200 shadow ms-2 p-2" type="button" onClick={() => handleEdit(false, task)}><FaRegSave /></button>
+        <button className="font-bold bg-gray-500 hover:bg-gray-700 rounded text-slate-200 shadow ms-2 p-2" type="button" onClick={() => handleEdit(false, { id, name })}><FaRegSave /></button>
         :
         <button className="font-bold bg-gray-500 hover:bg-gray-700 rounded text-slate-200 shadow ms-2 p-2" type="button" onClick={() => handleEdit(true)}><FaPencilAlt /></button>
       }
-      <button className="font-bold bg-red-500 hover:bg-red-700 rounded text-slate-200 shadow ms-2 p-2" type="button" onClick={() => handleDelete(task.id)}><FaTrash /></button>
+      <button className="font-bold bg-red-500 hover:bg-red-700 rounded text-slate-200 shadow ms-2 p-2" type="button" onClick={() => handleDelete(id)}><FaTrash /></button>
     </div>
   )
 }

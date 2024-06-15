@@ -1,4 +1,5 @@
 import { graphql } from "gql.tada";
+
 import { TaskFragment } from "../components/TaskCard";
 
 export const TaskQuery = graphql(
@@ -9,7 +10,7 @@ export const TaskQuery = graphql(
       }
     }
   `,
-  [TaskFragment]
+  [TaskFragment],
 );
 
 export const CreateTaskMutation = graphql(
@@ -20,7 +21,7 @@ export const CreateTaskMutation = graphql(
       }
     }
   `,
-  [TaskFragment]
+  [TaskFragment],
 );
 
 export const UpdateTaskMutation = graphql(
@@ -31,7 +32,7 @@ export const UpdateTaskMutation = graphql(
       }
     }
   `,
-  [TaskFragment]
+  [TaskFragment],
 );
 
 export const DeleteTaskMutation = graphql(
@@ -42,5 +43,5 @@ export const DeleteTaskMutation = graphql(
       }
     }
   `,
-  [TaskFragment]
+  [TaskFragment],
 );

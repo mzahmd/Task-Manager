@@ -1,4 +1,4 @@
-import Tasks from "./components/Tasks"
+import Tasks from "./components/Tasks";
 
 function App() {
   return (
@@ -6,7 +6,7 @@ function App() {
       <h1 className="text-xl font-bold">Todo - List</h1>
       <Tasks />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

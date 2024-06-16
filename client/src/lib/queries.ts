@@ -1,6 +1,11 @@
 import { graphql } from "gql.tada";
 
-import { TaskFragment } from "../components/TaskCard";
+export const TaskFragment = graphql(`
+  fragment Task on Task @_unmask {
+    id
+    name
+  }
+`);
 
 export const TaskQuery = graphql(
   `

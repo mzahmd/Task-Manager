@@ -1,17 +1,10 @@
 import type { FragmentOf } from "gql.tada";
-import { graphql } from "gql.tada";
 import { useState } from "react";
 import { FaPencilAlt, FaRegSave, FaTrash } from "react-icons/fa";
 import { useMutation } from "urql";
 
+import type { TaskFragment } from "@/lib/queries";
 import { DeleteTaskMutation, UpdateTaskMutation } from "@/lib/queries";
-
-export const TaskFragment = graphql(`
-  fragment Task on Task @_unmask {
-    id
-    name
-  }
-`);
 
 interface TaskCardProps extends FragmentOf<typeof TaskFragment> {}
 

@@ -7,12 +7,13 @@ import { CreateTaskMutation, TaskQuery } from "@/lib/queries";
 export default function Tasks() {
   const [taskName, setTaskName] = useState("");
 
-  const [{ data, error, fetching }] = useQuery({ query: TaskQuery });
+  const [{ data, error, fetching }, reexecuteQuery] = useQuery({ query: TaskQuery });
   const [_, createTask] = useMutation(CreateTaskMutation);
 
   async function handleAddTask() {
     if (taskName) {
       await createTask({ name: taskName });
+      reexecuteQuery({ requestPolicy: 'network-only' })
       setTaskName("");
     }
   }
